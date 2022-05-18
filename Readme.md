@@ -1,6 +1,11 @@
 # Rewatch
 
-Watch and execute command.
+Watch files or globs and execute arbitrary shell commands. This is a fork of an old and no longer working project created by Hsiaoming Yang. 
+I updated this package because I was having trouble executing different build commands depending on different file type changes i.e. it's
+unnecessary to do a full typescript recomplile if only some css changes - but the css files do need to be copied into the output folder.
+
+With this package, you can execute different shell operations on separate sets of watched files by creating different instances of `rewatch`.
+In my experience, nodemon tripped over itself when trying to accomplish this and would end up crashing and all sorts - getting into a real muddle.
 
 ## Install
 
@@ -16,54 +21,15 @@ It is pretty simple, get the help menu:
 
 ```
 Usage:
-    rewatch [files..] -c "[command]"
+    rewatch <command> <paths...> 
 
 Options:
-    -c, --command=<command>   a shell command
-    -i, --interval=[ms]       interval micro seconds
-    -d, --delay=[ms]          delay to execute command
-    -s, --signal=[signal]     kill child process with signal
-    -v, --version             print the version of vc
-    -h, --help                display this message
+    -d, --defer     Prevent rewatch from executing the specified command 
 
 Examples:
-    $ rewatch *.js foo.css -c "make build"
-    $ rewatch *.js foo.css -c "make build" -i 500
+    $ rewatch "npm run build" **/*.ts 
+    $ rewatch "npm run copy-files" **/*.css --defer
 ```
-
-## Changelog
-
-**2014-08-20** `0.4.0`
-
-Remove `-e` option. Add `-s` option for kill child process.
-
-```
-$ rewatch *.js -c "node ./server.js" -s "SIGTERM"
-```
-
-**2014-08-20** `0.3.0`
-
-Fix global leak for subprocess. Add option `-d` and `-e`.
-
-**2014-02-09** `0.2.2`
-
-Console.log the command.
-
-**2014-01-22** `0.2.1`
-
-Bugfix for toNumber.
-
-**2014-01-22** `0.2.0`
-
-Support for windows. Add options interval.
-
-**2014-01-22** `0.1.1`
-
-Bugfix for context closure.
-
-**2014-01-22** `0.1.0`
-
-First version.
 
 ## License
 
