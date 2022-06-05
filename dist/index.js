@@ -9,12 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 // import fs from "fs";
 const chokidar_1 = require("chokidar");
 const events_1 = require("events");
 const child_process_1 = require("child_process");
 const commander_1 = require("commander");
+const chalk_1 = __importDefault(require("chalk"));
 class Rewatch extends events_1.EventEmitter {
     constructor(command, files, options = {}) {
         super();
@@ -43,6 +47,7 @@ commander_1.program
     .argument("<paths...>", "Paths or globs representing files to watch.")
     .option("-d, --defer", "Prevent the specified command from running when the watch script is first run.", false)
     .action((command, paths, options) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("watching:", paths, "performing:", chalk_1.default.blue(command), "on change.");
     const rewatch = new Rewatch(command, paths, options);
     rewatch.watch();
 }));
