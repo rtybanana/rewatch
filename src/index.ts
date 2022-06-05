@@ -5,6 +5,7 @@ import { FSWatcher, watch as chokidar } from "chokidar";
 import { EventEmitter } from "events";
 import { spawn } from "child_process";
 import { program } from "commander";
+import chalk from "chalk";
 
 interface IOptions {
   defer?: boolean
@@ -50,6 +51,8 @@ program
   .argument("<paths...>", "Paths or globs representing files to watch.", )
   .option("-d, --defer", "Prevent the specified command from running when the watch script is first run.", false)
   .action(async (command: string, paths: string[], options: IOptions) => {
+    console.log("watching:", paths, "performing:", chalk.blue(command), "on change.");
+
     const rewatch = new Rewatch(command, paths, options);
     rewatch.watch();
   });
