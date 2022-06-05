@@ -1,7 +1,7 @@
 {
-  "name": "rewatch",
-  "version": "0.4.0",
-  "description": "Watch and execute command",
+  "name": "rewatcher",
+  "version": "0.4.1",
+  "description": "Watch files or globs and execute arbitrary shell commands.",
   "main": "index.js",
   "scripts": {
     "build": "tsc && npm link"
@@ -12,11 +12,10 @@
     "guard",
     "livereload"
   ],
-  "author": "Hsiaoming Yang <me@lepture.com>",
+  "author": "Rory Pinkney <rory@polysoftit.co.uk>",
   "dependencies": {
     "chokidar": "^3.5.3",
-    "commander": "^9.2.0",
-    "typescript": "^4.6.4"
+    "commander": "^9.2.0"
   },
   "bin": {
     "rewatch": "dist/index.js"
@@ -26,6 +25,7 @@
     "url": "https://github.com/lepture/rewatch/issues"
   },
   "devDependencies": {
-    "@types/glob": "^7.2.0"
+    "@types/glob": "^7.2.0",
+    "typescript": "^4.6.4"
   }
 }

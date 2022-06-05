@@ -24,7 +24,7 @@ Usage:
     rewatch <command> <paths...> 
 
 Options:
-    -d, --defer     Prevent rewatch from executing the specified command 
+    -d, --defer     Prevent rewatch from executing the specified command immediately
 
 Examples:
     $ rewatch "npm run build" **/*.ts 
